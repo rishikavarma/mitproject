@@ -15,7 +15,7 @@ int
 main(int argc, char *argv[])
 {
   test0();
-  exit(0);
+  exit();
 }
 
 void test0()
@@ -28,22 +28,22 @@ void test0()
 
   if (stat("/m/crashf", &st) == 0) {
     printf("stat /m/crashf succeeded\n");
-    exit(-1);
+    exit();
   }
 
   if (mount("/disk1", "/m") < 0) {
     printf("mount failed\n");
-    exit(-1);
+    exit();
   }    
 
   if (stat("/m/crashf", &st) < 0) {
     printf("stat /m/crashf failed\n");
-    exit(-1);
+    exit();
   }
 
   if (minor(st.dev) != 1) {
     printf("stat wrong minor %d\n", minor(st.dev));
-    exit(-1);
+    exit();
   }
   
   printf("test0 ok\n");
